@@ -15,7 +15,7 @@ KGiSL Institute of Technology - Exam Management System
 - Django 5.2.9
 - Django REST Framework
 - Python 3.x
-- SQLite Database
+- PostgreSQL (Production) / MySQL (Local Development)
 
 ### Frontend
 - Next.js 16.0.10
@@ -24,14 +24,31 @@ KGiSL Institute of Technology - Exam Management System
 - Framer Motion
 - Axios
 
+## Project Structure
+
+```
+exam-portal/
+├── backend/              # Django backend
+│   ├── manage.py
+│   ├── backend/         # Django project settings
+│   ├── apps/            # Django apps (core, exams)
+│   ├── datasets/        # Uploaded Excel files
+│   ├── scripts/         # Utility scripts
+│   └── requirements.txt
+└── frontend/            # Next.js frontend
+    ├── src/app/
+    ├── public/
+    └── package.json
+```
+
 ## Installation
 
 ### Backend Setup
 ```bash
-cd d:\adminstudent
+cd backend
 pip install -r requirements.txt
 python manage.py migrate
-python create_admin.py  # Create admin user
+python scripts/create_admin.py  # Create admin user
 python manage.py runserver
 ```
 
@@ -59,10 +76,14 @@ npm run dev
 
 ## Deployment
 
-- Backend: Deploy Django app to your preferred hosting (Railway, Render, etc.)
-- Frontend: Deploy Next.js app to Vercel or similar platform
-- Update API_URL in `frontend/src/app/api.ts` to production backend URL
+### Render Deployment
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed Render deployment instructions.
+
+- Backend: Deploy Django app to Render with PostgreSQL
+- Frontend: Deploy Next.js app to Render or Vercel
+- Update `NEXT_PUBLIC_API_URL` in frontend environment variables
 
 ## License
 
 © 2025 KGiSL Institute of Technology
+
